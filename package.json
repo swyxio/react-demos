@@ -1,5 +1,5 @@
 {
-  "version": "0.0.8",
+  "version": "0.0.9",
   "name": "react-demos",
   "author": "swyx",
   "module": "dist/react-demos.esm.js",
