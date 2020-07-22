@@ -3,6 +3,7 @@
 import React from 'react'
 import UsernameForm from './Chat/UsernameForm'
 import ChatScreen from './Chat/ChatScreen'
+import { User, Message } from 'types'
 
 export type ChatProps = {
   currentUser: User | null

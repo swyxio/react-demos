@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, Component, CSSProperties } from 'react'
+import { Message } from 'types'
 
 function ChatScroller(
   props: React.DetailedHTMLProps<

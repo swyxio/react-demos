@@ -3,6 +3,7 @@ import MessageList from './MessageList'
 import SendMessageForm from './SendMessageForm'
 import TypingIndicator from './TypingIndicator'
 import WhosOnlineList from './WhosOnlineList'
+import { User, Message } from 'types'
 
 type Props = {
   // userIsTypingIn(roomId: string): Promise<void>;
