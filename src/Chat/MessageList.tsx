@@ -1,5 +1,4 @@
 import React, { Component, CSSProperties } from 'react'
-
 class MessagesList extends Component<{
   style: CSSProperties
   messages: Message[]

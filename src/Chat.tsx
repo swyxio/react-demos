@@ -59,6 +59,15 @@ export function Chat(props: ChatProps) {
     messages,
     onUserLoggedIn,
   } = props
+
+  // React.useEffect(() => {
+  //   function updateOnlineStatus(event: Event) {
+  //     if (navigator.onLine) onUserLoggedIn()
+  //   }
+
+  //   window.addEventListener('online',  updateOnlineStatus);
+  //   window.addEventListener('offline', updateOnlineStatus);
+  // })
   const [state, setState] = React.useState({
     currentUsername: '',
     currentScreen: 'WhatIsYourUsernameScreen',
