@@ -10,6 +10,15 @@ goes without saying - none of these are meant for production!
 npm i react-demos
 ```
 
+## uuid
+
+most demos will need some form of uuid - we export a simple uuid getter for convenience
+
+```tsx
+import { uuid } from 'react-demos'
+uuid() // 'xxxxx-xxxx-xxxx'
+```
+
 ## Chat Example
 
 ```tsx
