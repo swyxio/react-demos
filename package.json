@@ -16,7 +16,9 @@
     "test": "tsdx test --passWithNoTests",
     "lint": "tsdx lint",
     "prepare": "tsdx build",
-    "prettify": "prettier src/*.* --write"
+    "prettify": "prettier src/*.* --write",
+    "version": "auto-changelog -p --template keepachangelog && git add CHANGELOG.md",
+    "prepublishOnly": "git push && git push --tags && gh-release"
   },
   "peerDependencies": {
     "react": ">=16"
@@ -38,6 +40,8 @@
   "devDependencies": {
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
+    "auto-changelog": "^2.2.0",
+    "gh-release": "^3.5.0",
     "husky": "^4.2.5",
     "pretty-quick": "^2.0.1",
     "react": "^16.13.1",
