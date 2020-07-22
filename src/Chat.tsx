@@ -4,6 +4,7 @@ import React from 'react'
 import UsernameForm from './Chat/UsernameForm'
 import ChatScreen from './Chat/ChatScreen'
 import { User, Message } from 'types'
+import { uuid } from 'uuid'
 
 export type ChatProps = {
   currentUser: User | null
@@ -17,13 +18,12 @@ export type ChatProps = {
   sendMessage: (text: string) => Promise<void>
 }
 
-let id = 0
 export function useChatLocalState(): ChatProps {
   const [currentUser, setCurrentUser] = React.useState<User | null>(null)
   const [usersOnline, setUsersOnline] = React.useState<User[]>([])
   async function onUserLoggedIn(name: string) {
     const newuser = {
-      id: '' + id++,
+      id: uuid(),
       name,
       isOnline: true,
     }
