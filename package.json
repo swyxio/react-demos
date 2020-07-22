@@ -50,5 +50,20 @@
     "tsdx": "^0.13.2",
     "tslib": "^2.0.0",
     "typescript": "^3.9.7"
-  }
+  },
+  "description": "plug and play React components to show off your backend tech by implementing a small set of methods!",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sw-yx/react-demos.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/sw-yx/react-demos/issues"
+  },
+  "homepage": "https://github.com/sw-yx/react-demos#readme"
 }
