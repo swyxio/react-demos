@@ -8,14 +8,14 @@ import { uuid } from 'uuid'
 
 export type ChatProps = {
   currentUser: User | null
-  usersOnline: User[]
   messages: Message[]
+  usersOnline: User[]
   /** set currentUser and add them to usersOnline */
   onUserLoggedIn: (name: string) => Promise<void>
-  /** (optional) unset currentUser and remove from usersOnline */
-  onUserLoggedOut: (id: string) => Promise<void>
   /** add to messages by also adding the currentUser */
   sendMessage: (text: string) => Promise<void>
+  /** (optional) unset currentUser and remove from usersOnline */
+  onUserLoggedOut?: (id: string) => Promise<void>
 }
 
 export function useChatLocalState(): ChatProps {
