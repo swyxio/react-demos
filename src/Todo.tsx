@@ -181,6 +181,7 @@ export function Todos({
           <li>
             <a
               className={cn(filter === 'all' && 'selected')}
+              href={'#'}
               onClick={() => setFilter('all')}
             >
               All
@@ -189,6 +190,7 @@ export function Todos({
           <li>
             <a
               className={cn(filter === 'active' && 'selected')}
+              href={'#'}
               onClick={() => setFilter('active')}
             >
               Active
@@ -197,6 +199,7 @@ export function Todos({
           <li>
             <a
               className={cn(filter === 'completed' && 'selected')}
+              href={'#'}
               onClick={() => setFilter('completed')}
             >
               Completed
