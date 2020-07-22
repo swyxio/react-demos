@@ -1,4 +1,5 @@
 import React, { Component, ReactNode } from 'react'
+import { User } from 'types'
 
 function WhosOnlineList(props: { users: User[]; currentUser: User }) {
   if (props.users) {
