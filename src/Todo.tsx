@@ -25,6 +25,7 @@ function uuid() {
   ) {
     var r = (dt + Math.random() * 16) % 16 | 0
     dt = Math.floor(dt / 16)
+    // eslint-disable-next-line
     return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16)
   })
   return uuid
@@ -181,7 +182,7 @@ export function Todos({
           <li>
             <a
               className={cn(filter === 'all' && 'selected')}
-              href={'#'}
+              href={'#all'}
               onClick={() => setFilter('all')}
             >
               All
@@ -190,7 +191,7 @@ export function Todos({
           <li>
             <a
               className={cn(filter === 'active' && 'selected')}
-              href={'#'}
+              href={'#active'}
               onClick={() => setFilter('active')}
             >
               Active
@@ -199,7 +200,7 @@ export function Todos({
           <li>
             <a
               className={cn(filter === 'completed' && 'selected')}
-              href={'#'}
+              href={'#completed'}
               onClick={() => setFilter('completed')}
             >
               Completed
