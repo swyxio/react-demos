@@ -61,6 +61,7 @@ class ChatScreen extends Component<Props> {
         padding: 20,
         width: '85%',
         display: 'flex',
+        height: '100vh',
         flexDirection: 'column',
       },
     }

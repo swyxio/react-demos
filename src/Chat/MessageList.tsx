@@ -1,4 +1,29 @@
-import React, { Component, CSSProperties } from 'react'
+import React, { useRef, useEffect, Component, CSSProperties } from 'react'
+
+function ChatScroller(
+  props: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLDivElement>,
+    HTMLDivElement
+  >
+) {
+  const ref = useRef<HTMLDivElement>(null)
+  const shouldScrollRef = useRef(true)
+  useEffect(() => {
+    const node = ref.current
+    if (node && shouldScrollRef.current) {
+      node.scrollTop = node.scrollHeight
+    }
+  })
+  const handleScroll = () => {
+    const node = ref.current
+    if (node) {
+      const { scrollTop, clientHeight, scrollHeight } = node
+      const atBottom = scrollHeight === clientHeight + scrollTop
+      shouldScrollRef.current = atBottom
+    }
+  }
+  return <div {...props} ref={ref} onScroll={handleScroll} />
+}
 class MessagesList extends Component<{
   style: CSSProperties
   messages: Message[]
@@ -22,7 +47,7 @@ class MessagesList extends Component<{
       message: { fontSize: 15 },
     }
     return (
-      <div
+      <ChatScroller
         style={{
           ...this.props.style,
           ...styles.container,
@@ -38,7 +63,7 @@ class MessagesList extends Component<{
             </li>
           ))}
         </ul>
-      </div>
+      </ChatScroller>
     )
   }
 }
