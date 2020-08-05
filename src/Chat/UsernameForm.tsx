@@ -11,7 +11,7 @@ class UsernameForm extends Component<Props, State> {
   constructor(props: Props) {
     super(props)
     this.state = {
-      username: '',
+      username: 'DEFAULT_USERNAME_' + Math.floor(Math.random() * 100),
     }
     this.onSubmit = this.onSubmit.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -19,6 +19,7 @@ class UsernameForm extends Component<Props, State> {
 
   onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
+    localStorage.setItem('REACT_DEMOS', this.state.username)
     this.props.onSubmit(this.state.username)
   }
 
@@ -30,7 +31,7 @@ class UsernameForm extends Component<Props, State> {
     return (
       <div>
         <div>
-          <h2>What is your usernane?</h2>
+          <h2>What is your username?</h2>
           <form onSubmit={this.onSubmit}>
             <input
               type="text"

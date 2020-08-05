@@ -55,6 +55,7 @@ class SendMessageForm extends Component<Props, State> {
           <form onSubmit={this.onSubmit} style={styles.form}>
             <input
               type="text"
+              autoFocus
               placeholder="Type a message here then hit ENTER"
               onChange={this.onChange}
               value={this.state.text}

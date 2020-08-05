@@ -1,7 +1,11 @@
 import React, { Component, ReactNode } from 'react'
 import { User } from 'types'
 
-function WhosOnlineList(props: { users: User[]; currentUser: User }) {
+function WhosOnlineList(props: {
+  users: User[]
+  currentUser: User
+  logOut: (id: string) => void
+}) {
   if (props.users) {
     return (
       <ul>
@@ -9,7 +13,8 @@ function WhosOnlineList(props: { users: User[]; currentUser: User }) {
           if (user.id === props.currentUser.id) {
             return (
               <WhosOnlineListItem key={index} isOnline>
-                {user.name} (You)
+                {user.name} (You){' '}
+                <button onClick={() => props.logOut(user.id)}>X</button>
               </WhosOnlineListItem>
             )
           }

@@ -4,24 +4,23 @@ import React from 'react'
 import UsernameForm from './Chat/UsernameForm'
 import ChatScreen from './Chat/ChatScreen'
 import { User, Message } from 'types'
-import { uuid } from 'uuid'
 
 export type ChatProps = {
   currentUser: User | null
   messages: Message[]
   usersOnline: User[]
   /** set currentUser and add them to usersOnline */
-  onUserLoggedIn: (name: string) => Promise<void>
+  loginUser: (name: string) => Promise<void>
+  /** (optional) unset currentUser and remove from usersOnline */
+  logoutUser?: (id: string) => Promise<void>
   /** add to messages by also adding the currentUser */
   sendMessage: (text: string) => Promise<void>
-  /** (optional) unset currentUser and remove from usersOnline */
-  onUserLoggedOut?: (id: string) => Promise<void>
 }
 
 export function useChatLocalState(): ChatProps {
   const [currentUser, setCurrentUser] = React.useState<User | null>(null)
   const [usersOnline, setUsersOnline] = React.useState<User[]>([])
-  async function onUserLoggedIn(name: string) {
+  async function loginUser(name: string) {
     const newuser = {
       id: uuid(),
       name,
@@ -30,7 +29,7 @@ export function useChatLocalState(): ChatProps {
     setCurrentUser(newuser)
     setUsersOnline([...usersOnline, newuser])
   }
-  async function onUserLoggedOut(id: string) {
+  async function logoutUser(id: string) {
     setCurrentUser(null)
     setUsersOnline(usersOnline.filter(user => user.id !== id))
   }
@@ -44,8 +43,8 @@ export function useChatLocalState(): ChatProps {
   }
   return {
     currentUser,
-    onUserLoggedIn,
-    onUserLoggedOut,
+    loginUser,
+    logoutUser,
     sendMessage,
     usersOnline,
     messages,
@@ -58,34 +57,51 @@ export function Chat(props: ChatProps) {
     usersOnline,
     currentUser,
     messages,
-    onUserLoggedIn,
+    loginUser,
+    logoutUser,
   } = props
 
   // React.useEffect(() => {
   //   function updateOnlineStatus(event: Event) {
-  //     if (navigator.onLine) onUserLoggedIn()
+  //     if (navigator.onLine) loginUser()
   //   }
 
   //   window.addEventListener('online',  updateOnlineStatus);
   //   window.addEventListener('offline', updateOnlineStatus);
   // })
-  const [state, setState] = React.useState({
-    currentUsername: '',
-    currentScreen: 'WhatIsYourUsernameScreen',
+  // const [state, setState] = React.useState(localStorage.getItem('REACT_DEMOS') || '')
+  if (!currentUser) {
+    return <UsernameForm onSubmit={loginUser} />
+  }
+
+  return (
+    <ChatScreen
+      {...{
+        logOut: logoutUser || noop,
+        sendMessage,
+        usersOnline,
+        currentUser,
+        messages,
+      }}
+    />
+  )
+}
+
+async function noop(e: any) {
+  // no op
+  console.log(e)
+}
+
+// https://www.w3resource.com/javascript-exercises/javascript-math-exercise-23.php
+function uuid() {
+  var dt = new Date().getTime()
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(
+    c
+  ) {
+    var r = (dt + Math.random() * 16) % 16 | 0
+    dt = Math.floor(dt / 16)
+    // eslint-disable-next-line
+    return (c == 'x' ? r : (r & 0x3) | 0x8).toString(16)
   })
-  function onUsernameSubmitted(username: string) {
-    // server stuff
-    setState({
-      currentUsername: username,
-      currentScreen: 'ChatScreen',
-    })
-    onUserLoggedIn(username)
-  }
-
-  if (state.currentScreen === 'WhatIsYourUsernameScreen') {
-    return <UsernameForm onSubmit={onUsernameSubmitted} />
-  }
-  if (!currentUser) return <div> logging in...</div>
-
-  return <ChatScreen {...{ sendMessage, usersOnline, currentUser, messages }} />
+  return uuid
 }

@@ -8,6 +8,7 @@ import { User, Message } from 'types'
 type Props = {
   // userIsTypingIn(roomId: string): Promise<void>;
   sendMessage(text: string): Promise<void>
+  logOut(id: string): Promise<void>
   usersOnline: User[]
   currentUser: User
   messages: Message[]
@@ -59,10 +60,10 @@ class ChatScreen extends Component<Props> {
         color: 'white',
       },
       chatListContainer: {
-        padding: 20,
+        // padding: 20,
         width: '85%',
         display: 'flex',
-        height: '100vh',
+        height: '100%',
         flexDirection: 'column',
       },
     }
@@ -73,6 +74,7 @@ class ChatScreen extends Component<Props> {
           <aside style={styles.whosOnlineListContainer}>
             <WhosOnlineList
               currentUser={this.props.currentUser}
+              logOut={this.props.logOut}
               users={this.props.usersOnline}
             />
           </aside>
