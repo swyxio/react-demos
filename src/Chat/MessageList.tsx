@@ -28,15 +28,17 @@ function ChatScroller(
 class MessagesList extends Component<{
   style: CSSProperties
   messages: Message[]
+  children?: React.ReactNode
 }> {
   render() {
     const styles: Record<string, CSSProperties> = {
       container: {
-        overflowY: 'scroll',
-        flex: 1,
-      },
-      ul: {
-        listStyle: 'none',
+        overflowY: 'auto',
+        padding: '1rem',
+        // flex: 1,
+        // display: 'flex',
+        // flexDirection: 'column',
+        // justifyContent: 'flex-end',
       },
       li: {
         marginTop: 13,
@@ -44,27 +46,43 @@ class MessagesList extends Component<{
       },
       senderUsername: {
         fontWeight: 'bold',
+        color: '#2b6cb0',
       },
-      message: { fontSize: 15 },
+      message: { fontSize: 15, color: 'white', marginTop: '0' },
     }
     return (
-      <ChatScroller
+      <div
         style={{
-          ...this.props.style,
-          ...styles.container,
+          // height: '100%',
+          // display: 'flex',
+          // flexDirection: 'column',
+          // justifyContent: 'flex-end',
+
+          overflow: 'auto',
+          display: 'flex',
+          flexDirection: 'column-reverse',
+          paddingBottom: '4rem',
+          height: '100%',
+          boxSizing: 'border-box',
         }}
       >
-        <ul style={styles.ul}>
+        <ChatScroller
+          style={{
+            ...this.props.style,
+            ...styles.container,
+          }}
+        >
           {this.props.messages.map((message, index) => (
-            <li key={index} style={styles.li}>
+            <div key={index} style={styles.li}>
               <div>
                 <span style={styles.senderUsername}>{message.user.name}</span>{' '}
               </div>
               <p style={styles.message}>{message.text}</p>
-            </li>
+            </div>
           ))}
-        </ul>
-      </ChatScroller>
+          {this.props.children}
+        </ChatScroller>
+      </div>
     )
   }
 }

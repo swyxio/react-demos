@@ -33,18 +33,26 @@ class SendMessageForm extends Component<Props, State> {
   render() {
     const styles = {
       container: {
-        padding: 20,
+        paddingTop: 20,
+        paddingBottom: 20,
         borderTop: '1px #4C758F solid',
-        marginBottom: 20,
+        width: '100%',
+        left: '0',
+        bottom: '0',
+        position: 'absolute' as 'absolute',
       },
       form: {
         display: 'flex',
       },
       input: {
-        color: 'inherit',
-        background: 'none',
+        color: '#4a5568',
+        backgroundColor: '#fff',
         outline: 'none',
         border: 'none',
+        padding: '0.75rem',
+        lineHeight: 1.25,
+        borderWidth: '1px',
+        borderRadius: '0.25rem',
         flex: 1,
         fontSize: 16,
       },

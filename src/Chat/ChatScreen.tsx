@@ -56,14 +56,16 @@ class ChatScreen extends Component<Props> {
       whosOnlineListContainer: {
         width: '15%',
         padding: 20,
-        backgroundColor: '#2c303b',
+        backgroundColor: '#1a202c',
         color: 'white',
       },
       chatListContainer: {
         // padding: 20,
+        boxSizing: 'border-box',
+        backgroundColor: '#2d3748',
         width: '85%',
         display: 'flex',
-        height: '100%',
+        height: '100vh',
         flexDirection: 'column',
       },
     }
@@ -79,19 +81,21 @@ class ChatScreen extends Component<Props> {
             />
           </aside>
           <section style={styles.chatListContainer}>
-            <MessageList
-              messages={this.props.messages}
-              style={styles.chatList}
-            />
-            {this.props.usersWhoAreTyping && (
-              <TypingIndicator
-                usersWhoAreTyping={this.props.usersWhoAreTyping}
+            <div style={{ position: 'relative', height: '100vh' }}>
+              <MessageList
+                messages={this.props.messages}
+                style={styles.chatList}
+              ></MessageList>
+              {this.props.usersWhoAreTyping && (
+                <TypingIndicator
+                  usersWhoAreTyping={this.props.usersWhoAreTyping}
+                />
+              )}
+              <SendMessageForm
+                onSubmit={this.sendMessage}
+                // onChange={this.sendTypingEvent}
               />
-            )}
-            <SendMessageForm
-              onSubmit={this.sendMessage}
-              // onChange={this.sendTypingEvent}
-            />
+            </div>
           </section>
         </div>
       </div>

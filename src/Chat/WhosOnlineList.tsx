@@ -8,23 +8,39 @@ function WhosOnlineList(props: {
 }) {
   if (props.users) {
     return (
-      <ul>
-        {props.users.map((user, index) => {
-          if (user.id === props.currentUser.id) {
+      <>
+        <div>Who's Online</div>
+        <ul>
+          {props.users.map((user, index) => {
+            if (user.id === props.currentUser.id) {
+              return (
+                <WhosOnlineListItem key={index} isOnline>
+                  {user.name} (You){' '}
+                </WhosOnlineListItem>
+              )
+            }
             return (
-              <WhosOnlineListItem key={index} isOnline>
-                {user.name} (You){' '}
-                <button onClick={() => props.logOut(user.id)}>X</button>
+              <WhosOnlineListItem key={index} isOnline={user.isOnline}>
+                {user.name}
               </WhosOnlineListItem>
             )
-          }
-          return (
-            <WhosOnlineListItem key={index} isOnline={user.isOnline}>
-              {user.name}
-            </WhosOnlineListItem>
-          )
-        })}
-      </ul>
+          })}
+        </ul>
+        <hr></hr>
+        <button
+          style={{
+            width: '100%',
+            color: '#fff',
+            padding: '1rem',
+            border: '0',
+            borderRadius: '0.25rem',
+            backgroundColor: '#2a4365',
+          }}
+          onClick={() => props.logOut(props.currentUser.id)}
+        >
+          Log Out
+        </button>
+      </>
     )
   } else {
     return <p>Loading...</p>

@@ -33,7 +33,17 @@ export function useChatLocalState(): ChatProps {
     setCurrentUser(null)
     setUsersOnline(usersOnline.filter(user => user.id !== id))
   }
-  const [messages, setMessages] = React.useState<Message[]>([])
+  const [messages, setMessages] = React.useState<Message[]>([
+    {
+      user: {
+        id: uuid(),
+        name: 'React Demos',
+        isOnline: false,
+      },
+      text:
+        'Welcome to React Demos Chat! You can find documentation for this in https://github.com/sw-yx/react-demos',
+    },
+  ])
   async function sendMessage(text: string) {
     if (currentUser) {
       setMessages([...messages, { user: currentUser, text }])
