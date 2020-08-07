@@ -1,5 +1,12 @@
 import React from 'react'
 
+/**
+ *
+ * THIS ISNT USED RIGHT NOW
+ *
+ *
+ */
+
 function TypingIndicator(props: { usersWhoAreTyping: string[] }) {
   if (props.usersWhoAreTyping.length > 0) {
     return (

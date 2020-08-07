@@ -3,7 +3,7 @@ import { User } from 'types'
 
 function WhosOnlineList(props: {
   users: User[]
-  currentUser: User
+  currentUser: string
   logOut: (id: string) => void
 }) {
   if (props.users) {
@@ -12,7 +12,7 @@ function WhosOnlineList(props: {
         <div>Who's Online</div>
         <ul>
           {props.users.map((user, index) => {
-            if (user.id === props.currentUser.id) {
+            if (user.id === props.currentUser) {
               return (
                 <WhosOnlineListItem key={index} isOnline>
                   {user.name} (You){' '}
@@ -36,7 +36,7 @@ function WhosOnlineList(props: {
             borderRadius: '0.25rem',
             backgroundColor: '#2a4365',
           }}
-          onClick={() => props.logOut(props.currentUser.id)}
+          onClick={() => props.logOut(props.currentUser)}
         >
           Log Out
         </button>

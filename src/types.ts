@@ -3,4 +3,4 @@ export type User = {
   name: string
   isOnline: boolean
 }
-export type Message = { user: User; text: string }
+export type Message = { user: string; text: string }

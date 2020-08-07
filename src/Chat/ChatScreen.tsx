@@ -10,7 +10,7 @@ type Props = {
   sendMessage(text: string): Promise<void>
   logOut(id: string): Promise<void>
   usersOnline: User[]
-  currentUser: User
+  currentUser: string
   messages: Message[]
   usersWhoAreTyping?: string[]
 }
@@ -48,6 +48,8 @@ class ChatScreen extends Component<Props> {
         height: '100vh',
         display: 'flex',
         flexDirection: 'column',
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Noto Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
       },
       chatContainer: {
         display: 'flex',

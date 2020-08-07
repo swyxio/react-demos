@@ -6,7 +6,7 @@ import ChatScreen from './Chat/ChatScreen'
 import { User, Message } from 'types'
 
 export type ChatProps = {
-  currentUser: User | null
+  currentUser: string | null
   messages: Message[]
   usersOnline: User[]
   /** set currentUser and add them to usersOnline */
@@ -18,7 +18,7 @@ export type ChatProps = {
 }
 
 export function useChatLocalState(): ChatProps {
-  const [currentUser, setCurrentUser] = React.useState<User | null>(null)
+  const [currentUser, setCurrentUser] = React.useState<string | null>(null)
   const [usersOnline, setUsersOnline] = React.useState<User[]>([])
   async function loginUser(name: string) {
     const newuser = {
@@ -26,7 +26,7 @@ export function useChatLocalState(): ChatProps {
       name,
       isOnline: true,
     }
-    setCurrentUser(newuser)
+    setCurrentUser(name)
     setUsersOnline([...usersOnline, newuser])
   }
   async function logoutUser(id: string) {
@@ -35,11 +35,7 @@ export function useChatLocalState(): ChatProps {
   }
   const [messages, setMessages] = React.useState<Message[]>([
     {
-      user: {
-        id: uuid(),
-        name: 'React Demos',
-        isOnline: false,
-      },
+      user: 'React Demos',
       text:
         'Welcome to React Demos Chat! You can find documentation for this in https://github.com/sw-yx/react-demos',
     },

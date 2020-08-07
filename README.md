@@ -18,24 +18,72 @@ import * as ReactDOM from 'react-dom'
 import { Chat, useChatLocalState } from 'react-demos'
 
 const App = () => {
-  const props = useChatLocalState()
+  const {
+    currentUser,
+    sendMessage,
+    loginUser,
+    logoutUser,
+    messages,
+    usersOnline,
+  } = useChatLocalState()
   // // To implement:
   //   currentUser: User | null;
   //   usersOnline: User[];
   //   messages: Message[];
   // /** set currentUser and add them to usersOnline */
-  // loginUser: (name: string) => Promise<void>
-  // /** (optional) unset currentUser and remove from usersOnline */
-  // logoutUser?: (id: string) => Promise<void>
+  // async function loginUser(name: string) {}
   // /** add to messages by also adding the currentUser */
-  // sendMessage: (text: string) => Promise<void>
+  // async function sendMessage(text: string) {}
+  // /** (optional) unset currentUser and remove from usersOnline */
+  // async function logOutUser(id: string) {}
   return (
     <div>
-      <Chat {...props} />
+      <Chat
+        {...{
+          currentUser,
+          sendMessage,
+          loginUser,
+          logoutUser,
+          messages,
+          usersOnline,
+        }}
+      />
     </div>
   )
 }
 ```
+
+Here are the schemas of the 2 models used:
+
+```ts
+export type User = {
+  id: string
+  name: string
+  isOnline: boolean
+}
+export type Message = { user: string; text: string }
+```
+
+<details>
+<summary>
+AWS AppSync model
+</summary>
+
+```graphql
+type User @model {
+  id: ID!
+  name: String
+  isOnline: Boolean
+}
+
+type Message @model {
+  id: ID!
+  user: String
+  text: String
+}
+```
+
+</details>
 
 ## Todo Example
 
