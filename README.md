@@ -23,12 +23,12 @@ const App = () => {
   //   currentUser: User | null;
   //   usersOnline: User[];
   //   messages: Message[];
-  //   /** set currentUser and add them to usersOnline */
-  //   onUserLoggedIn: (name: string) => Promise<void>;
-  //   /** (optional) unset currentUser and remove from usersOnline */
-  //   onUserLoggedOut: (id: string) => Promise<void>;
-  //   /** add to messages by also adding the currentUser */
-  //   sendMessage: (text: string) => Promise<void>;
+  // /** set currentUser and add them to usersOnline */
+  // loginUser: (name: string) => Promise<void>
+  // /** (optional) unset currentUser and remove from usersOnline */
+  // logoutUser?: (id: string) => Promise<void>
+  // /** add to messages by also adding the currentUser */
+  // sendMessage: (text: string) => Promise<void>
   return (
     <div>
       <Chat {...props} />
