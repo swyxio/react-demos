@@ -22,7 +22,7 @@ const App = () => {
     currentUser,
     sendMessage,
     loginUser,
-    logoutUser,
+    // logoutUser, // optional
     messages,
     usersOnline,
   } = useChatLocalState()
@@ -43,7 +43,7 @@ const App = () => {
           currentUser,
           sendMessage,
           loginUser,
-          logoutUser,
+          // logoutUser, // optional
           messages,
           usersOnline,
         }}
@@ -59,7 +59,7 @@ Here are the schemas of the 2 models used:
 export type User = {
   id: string
   name: string
-  isOnline: boolean
+  isOnline?: boolean
 }
 export type Message = { user: string; text: string }
 ```
