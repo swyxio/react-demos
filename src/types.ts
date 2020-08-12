@@ -1,6 +1,6 @@
 export type User = {
   id: string
   name: string
-  isOnline: boolean
+  isOnline?: boolean
 }
 export type Message = { user: string; text: string }

@@ -10,7 +10,8 @@ function WhosOnlineList(props: {
     return (
       <>
         <div>Who's Online</div>
-        <ul>
+        <hr></hr>
+        <ul style={{ padding: 0 }}>
           {props.users.map((user, index) => {
             if (user.id === props.currentUser) {
               return (
@@ -48,7 +49,7 @@ function WhosOnlineList(props: {
 }
 
 class WhosOnlineListItem extends Component<{
-  isOnline: boolean
+  isOnline?: boolean
   children?: ReactNode
 }> {
   render() {
@@ -70,12 +71,12 @@ class WhosOnlineListItem extends Component<{
     }
     return (
       <li style={styles.li}>
-        <div
+        {/* <div
           style={{
             ...styles.div,
             backgroundColor: this.props.isOnline ? '#539eff' : '#414756',
           }}
-        />
+        /> */}
         {this.props.children}
       </li>
     )
